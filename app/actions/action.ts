@@ -1,6 +1,19 @@
 "use server";
-
-export async function createCompletion(prompt: string) {
+  
+type Nutrition = {
+    name: string;
+    calories: number;
+    protein_g: number;
+    fat_total_g: number;
+    carbohydrates_total_g: number;
+  };
+  
+  type NutritionResponse = {
+    error?: string;
+    success?: Nutrition[];
+  };
+  
+export async function createCompletion(prompt: string): Promise<NutritionResponse> {
   if (!prompt) {
     return { error: "prompt is required" };
   }
